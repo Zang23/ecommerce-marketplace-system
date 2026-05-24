@@ -43,9 +43,7 @@ Isso irá:
 Após subir o container, execute:
 
 ```bash
-docker exec -it sqlserver_bd /opt/mssql-tools18/bin/sqlcmd \
--S localhost -U sa -P "123Elkt!" -C \
--i /scripts/init.sql
+docker exec -it sqlserver_bd /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "123Elkt!" -C -i /scripts/init.sql
 ```
 
 Isso irá:
