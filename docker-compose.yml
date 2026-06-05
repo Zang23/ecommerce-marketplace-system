@@ -9,7 +9,18 @@ services:
       - "1433:1433"
     volumes:
       - sqlserver_data:/var/opt/mssql
-      - ./database:/scripts
+      
+  sqlserver-init:
+    build:
+      context: ./database
+    depends_on:
+      - sqlserver
+    environment:
+      MSSQL_SA_PASSWORD: "123Elkt!"
+    restart: "no"
 
 volumes:
   sqlserver_data:
+
+
+  
