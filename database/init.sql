@@ -12,6 +12,8 @@ BEGIN
     CREATE TABLE comprador (
         id INT PRIMARY KEY IDENTITY(1,1),
 
+        senha VARCHAR(35) NOT NULL,
+        email VARCHAR(100) NOT NULL,
         nome VARCHAR(50) NOT NULL,
         telefone VARCHAR(11) NOT NULL,
 
