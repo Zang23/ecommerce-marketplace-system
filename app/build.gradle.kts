@@ -31,5 +31,5 @@ java {
 }
 
 application {
-    mainClass.set("edu.marketplace.App");
+    mainClass.set("edu.marketplace.boundary.Main");
 }
