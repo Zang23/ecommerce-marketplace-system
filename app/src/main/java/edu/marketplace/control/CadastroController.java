@@ -1,10 +1,8 @@
 package edu.marketplace.control;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import edu.marketplace.dao.CompradorDAO;
-import edu.marketplace.dao.ConnectionFactory;
 import edu.marketplace.entity.Comprador;
 
 // Resumo do serviço
@@ -16,7 +14,7 @@ public class CadastroController {
 
   // Resuminho: Primeiro valida os campos, se tiverem certos ele pede pro DAO
   // salvar o cliente no banco e depois disso solta uma mensagem falando noq deu
-  public String cadastrar(Comprador comprador) {
+  public String cadastrar(Comprador comprador, boolean ehVendedor) {
 
     // Função pra ver se o email é válido
     if (emailValido(comprador.getEmail()) == false) {
@@ -36,14 +34,12 @@ public class CadastroController {
     // Se chegou aqui vai pro DAO.
     try {
         // Aqui abre a conexão, ela vai pro DAO, Thiago pelo oq eu pesquisei
-        // vocÊ vai precisar fazer no seu DAO uma função pra inserir o comprador, e depois disso fecha a conexão aqui mesmo
-        Connection conexao = ConnectionFactory.getConnection();
-        CompradorDAO dao = new CompradorDAO(conexao);
+        // vocÊ vai precisar fazer no seu DAO uma função pra inserir o comprador
+        CompradorDAO dao = new CompradorDAO();
 
-        // Passando o objeto todo, se precisar mudar só avisar
-        dao.inserir(comprador);
+        // Passando o objeto todo, se precisar mudar só avisar (Boolean pra saber se é vendedor ou não)
+        dao.inserir(comprador, ehVendedor);
 
-        conexao.close();
         return "Cadastrado com sucesso";
 
     } catch (SQLException erro) {
@@ -56,13 +52,11 @@ public class CadastroController {
   public boolean usuarioExiste(String email) {
 
     try {
-        Connection conexao = ConnectionFactory.getConnection();
-        CompradorDAO dao = new CompradorDAO(conexao);
+        CompradorDAO dao = new CompradorDAO();
 
         // Ach oque verificar por email é o melhor, ai faz uma função que só
         // confere se tem arroba e ponto ou algo assim simples p testar
         boolean jaExiste = dao.existePorEmail(email);
-        conexao.close();
         return jaExiste;
 
     } catch (SQLException erro) {
