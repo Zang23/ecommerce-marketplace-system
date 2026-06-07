@@ -10,7 +10,7 @@ import edu.marketplace.entity.Comprador;
 // Resumo do serviço
 // Itens:
 // Validar campos (ver se o usuário já existe, formato do email, senha válida)
-// Cadastrar clientes
+// Cadastrar clientes  
 
 public class CadastroController {
 
