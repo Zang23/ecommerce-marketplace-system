@@ -10,13 +10,13 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        LoginBoundary loginBoundary = new LoginBoundary(primaryStage);
-        Scene scene = new Scene(loginBoundary.getRoot(), 1000, 600);
-
-        primaryStage.setTitle(getGreeting());
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void start(Stage stage) {
+       Scene scene = LoginBoundary.criarCena(stage);    
+        //Testando as outras telas:
+        //Scene scene = CartaoBoundary.criarCena(stage); 
+        stage.setScene(scene);
+        stage.setTitle(getGreeting());
+        stage.show();
     }
 
     public static void main(String[] args) {
