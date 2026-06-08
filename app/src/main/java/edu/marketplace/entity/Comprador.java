@@ -8,11 +8,11 @@ public class Comprador{
   private String senha;
   private String telefone;
   private String enderecoLogradouro;
-  private String enderecoNumero;
+  private int enderecoNumero;
   private String enderecoCep;
   private String enderecoCidade;
 
-  public Comprador(Long id, String nome, String email, String senha, String telefone, String enderecoLogradouro, String enderecoNumero, String enderecoCep, String enderecoCidade){
+  public Comprador(Long id, String nome, String email, String senha, String telefone, String enderecoLogradouro, int enderecoNumero, String enderecoCep, String enderecoCidade){
 
     this.id = id;
     this.nome = nome;
@@ -68,11 +68,11 @@ public class Comprador{
     this.enderecoLogradouro = enderecoLogradouro;
   }
 
-  public String getEnderecoNumero() {
+  public int getEnderecoNumero() {
     return enderecoNumero;
   }
 
-  public void setEnderecoNumero(String enderecoNumero) {
+  public void setEnderecoNumero(int enderecoNumero) {
     this.enderecoNumero = enderecoNumero;
   }
 
