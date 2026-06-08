@@ -1,12 +1,12 @@
 package edu.marketplace.dao;
 
-public interface CrudDAO<T> {
+public interface CrudDAO<T, ID> {
 
   boolean inserir(T entidade);
 
   boolean atualizar(T entidade);
 
-  boolean excluir(Long id);
+  boolean excluir(ID id);
 
   T buscarPorId(Long id);
 

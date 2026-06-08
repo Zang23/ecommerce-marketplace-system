@@ -39,12 +39,6 @@ public class CadastroController {
         CompradorDAO compradorDao = new CompradorDAO(conexao);
         VendedorDAO vendedorDao = new VendedorDAO(conexao);
 
-        // Usa a função de verificar email
-        if (compradorDao.existePorEmail(comprador.getEmail())) {
-            conexao.close();
-            return "Já existe uma conta com esse email";
-        }
-
         // Mudei pra ver qual DAO que vai colocar / cadastrar o usuário
         boolean inseriu;
         if (ehVendedor == true) {
@@ -69,24 +63,6 @@ public class CadastroController {
   }
 
   // Função que verifica se o usuário já está cadastrado
-  public boolean usuarioExiste(String email) {
-
-    try {
-        Connection conexao = ConnectionFactory.getConnection();
-        CompradorDAO dao = new CompradorDAO(conexao);
-
-        // Ach oque verificar por email é o melhor, ai faz uma função que só
-        // confere se tem arroba e ponto ou algo assim simples p testar
-        // Como vendedor HERDA do comprador, só precisa verificar no DAO de comprador mesmo e gg
-        boolean jaExiste = dao.existePorEmail(email);
-        conexao.close();
-        return jaExiste;
-
-    } catch (SQLException erro) {
-        erro.printStackTrace();
-        return false;
-    }
-  }
 
   // Função pra ver se o email é valido (verifica só o arroba e o ponto, se quiserem que eu melhore só avisar)
   public boolean emailValido(String email) {

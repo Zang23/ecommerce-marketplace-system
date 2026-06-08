@@ -51,7 +51,8 @@ public class CartaoController {
         Connection conexao = ConnectionFactory.getConnection();
         CartaoDAO dao = new CartaoDAO(conexao);
 
-        // Thiago aqui vai precisar de uma função que usa o id do comprador pra achar os cartões que ele tem e devolver a lista deles (devolver ela vazia se não tiver nenhum ou der erro)
+        // Thiago aqui vai precisar de uma função que usa o id do comprador pra achar os cartões
+        // que ele tem e devolver a lista deles (devolver ela vazia se não tiver nenhum ou der erro)
         cartoes = dao.listarPorComprador(idComprador);
 
         conexao.close();

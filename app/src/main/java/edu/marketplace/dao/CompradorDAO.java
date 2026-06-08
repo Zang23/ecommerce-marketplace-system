@@ -4,8 +4,9 @@ import edu.marketplace.entity.Comprador;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
-public class CompradorDAO implements CrudDAO<Comprador> {
+public class CompradorDAO implements CrudDAO<Comprador, Long> {
 
   private Connection con;
 
@@ -115,11 +116,80 @@ public class CompradorDAO implements CrudDAO<Comprador> {
     return null;
   }
  
-
   public Comprador buscarPorEmailESenha(String email, String senha){
+  
+    String sql = """
+      SELECT  * 
+      FROM comprador
+      WHERE email = ?
+    """;
+
+    Comprador c = new Comprador();
 
 
-    return null;
+    try(PreparedStatement stm = con.prepareStatement(sql)){
+
+      stm.setString(1, email);
+
+      ResultSet rs = stm.executeQuery();
+
+      while(rs.next()){
+
+        
+        c.setId(rs.getLong("id"));
+        c.setEmail(rs.getString("email"));
+        c.setSenha(rs.getString("senha"));
+        c.setTelefone(rs.getString("telefone"));
+        c.setNome(rs.getString("nome"));
+        c.setEnderecoLogradouro(rs.getString("endereco_logradouro"));
+        c.setEnderecoNumero(rs.getInt("endereco_numero"));
+        c.setEnderecoCep(rs.getString("endereco_cep"));
+        c.setEnderecoCidade(rs.getString("endereco_cidade"));
+
+        System.out.println("Comprador encontrado com sucesso!");
+        return c;
+
+      }
+
+    }catch(Exception e){
+      System.out.println("Erro ao fazer a busca por email e senha: "  + e.getMessage());
+    }
+
+    System.out.println("Comprador nao encontrado!");
+    return c;
+
+  }
+
+  public boolean ehVendedor(Long id){
+
+    String sql = """
+      SELECT COUNT(*) AS quantidade
+      FROM vendedor
+      WHERE id_comprador = ?
+    """;
+
+    try(PreparedStatement stm = con.prepareStatement(sql)){
+      
+      stm.setLong(1,id);
+
+      ResultSet rs = stm.executeQuery();
+
+      if(rs.next()){
+        
+        long qtd = rs.getLong("quantidade");
+        if(qtd > 0){
+          return true;
+        }
+
+      }
+
+      return false;
+
+    }catch(Exception e){
+      System.out.println("Erro ao verificar se era um vendedor: " + e.getMessage());
+      return false;
+    }
+
 
   }
 
