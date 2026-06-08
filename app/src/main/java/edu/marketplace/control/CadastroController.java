@@ -9,6 +9,8 @@ import edu.marketplace.dao.VendedorDAO;
 import edu.marketplace.entity.Comprador;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 // Resumo do serviço
 // Itens:
@@ -19,9 +21,17 @@ public class CadastroController {
 
   // Resuminho: Primeiro valida os campos, se tiverem certos ele pede pro DAO
   // salvar o cliente no banco e depois disso solta uma mensagem falando noq deu
-  public final StringProperty nome = new SimpleStringProperty(this, "nome");
-  public String cadastrar(Comprador comprador, boolean ehVendedor) {
+  public final StringProperty nomeProperty = new SimpleStringProperty(this, "nome");
+  public final StringProperty documentoProperty = new SimpleStringProperty(this, "000.000.000-00");
+  public final StringProperty emailProperty = new SimpleStringProperty(this, "nome@gmail.com");
+  public final StringProperty senhaProperty = new SimpleStringProperty(this, "123");
+  public final StringProperty senha2Property = new SimpleStringProperty(this, "123");
+  public final BooleanProperty isVendedorProperty = new SimpleBooleanProperty(false);
+  
+  public String cadastrar() {
 
+	Comprador comprador = toEntity();
+	boolean ehVendedor = isVendedorProperty.get();
     // Função pra ver se o email é válido
     if (emailValido(comprador.getEmail()) == false) {
         return "Email inválido";
@@ -79,5 +89,14 @@ public class CadastroController {
         return false;
     }
     return senha.length() >= 6;
+  }
+  public Comprador toEntity(){
+	  Comprador c = new Comprador();
+	  
+	  c.setNome(nomeProperty.get());
+	  c.setSenha(senhaProperty.get());
+	  c.setEmail(emailProperty.get());
+
+	return c;
   }
 }

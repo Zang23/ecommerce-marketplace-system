@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import edu.marketplace.control.CadastroController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class CadastroBoundary {
 
@@ -130,9 +132,18 @@ public class CadastroBoundary {
         btnCadastrar.getStyleClass().add("btn-entrar");
         VBox.setMargin(btnCadastrar, new Insets(15, 0, 0, 0));
 		
+		btnCadastrar.setOnAction(event -> {
+			System.out.println(controller.cadastrar());
+		});
+		
 		// Fazendo o binding bidirecional dos campos com o CadastroController
 
-		nomeBox.textProperty().bindBidirectional(controller.nomeProperty);
+		nomeField.textProperty().bindBidirectional(controller.nomeProperty);
+		documentoField.textProperty().bindBidirectional(controller.documentoProperty);
+		emailField.textProperty().bindBidirectional(controller.emailProperty);
+		senhaField.textProperty().bindBidirectional(controller.senhaProperty);
+		senha2Field.textProperty().bindBidirectional(controller.senha2Property);
+		btnVendedor.selectedProperty().bindBidirectional(controller.isVendedorProperty);
 		
         // Adicionando os elementos do formulário no card
         card.getChildren().addAll(
