@@ -25,8 +25,16 @@ public class Comprador{
     this.enderecoCidade = enderecoCidade;
 
   }
+
+  public Comprador(){
+    super();
+  }
   public Long getId() {
     return id;
+  }
+
+  public void setId(Long id){
+    this.id = id;
   }
 
   public String getNome() {
@@ -72,7 +80,7 @@ public class Comprador{
     return enderecoNumero;
   }
 
-  public void setEnderecoNumero(int enderecoNumero) {
+  public void setEnderecoNumero(int enderecoNumero){
     this.enderecoNumero = enderecoNumero;
   }
 

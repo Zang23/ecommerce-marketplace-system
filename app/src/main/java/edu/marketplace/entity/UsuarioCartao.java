@@ -20,6 +20,10 @@ public class UsuarioCartao {
 
   }
 
+  public UsuarioCartao (){
+    super();
+  }
+
   public String getNumeroCartao() {
     return numeroCartao;
   }
