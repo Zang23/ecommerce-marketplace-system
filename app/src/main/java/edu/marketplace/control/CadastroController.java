@@ -7,6 +7,8 @@ import edu.marketplace.dao.CompradorDAO;
 import edu.marketplace.dao.ConnectionFactory;
 import edu.marketplace.dao.VendedorDAO;
 import edu.marketplace.entity.Comprador;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 // Resumo do serviço
 // Itens:
@@ -17,6 +19,7 @@ public class CadastroController {
 
   // Resuminho: Primeiro valida os campos, se tiverem certos ele pede pro DAO
   // salvar o cliente no banco e depois disso solta uma mensagem falando noq deu
+  public final StringProperty nome = new SimpleStringProperty(this, "nome");
   public String cadastrar(Comprador comprador, boolean ehVendedor) {
 
     // Função pra ver se o email é válido

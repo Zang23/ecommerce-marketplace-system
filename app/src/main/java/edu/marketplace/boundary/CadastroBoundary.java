@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import edu.marketplace.control.CadastroController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class CadastroBoundary {
 
@@ -12,6 +15,7 @@ public class CadastroBoundary {
     public static Scene criarCena(Stage stage) {
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #2b2b2b;");
+		CadastroController controller = new CadastroController();
 
         VBox card = new VBox(15);
         card.getStyleClass().add("login-card");
@@ -125,7 +129,11 @@ public class CadastroBoundary {
         btnCadastrar.setMaxWidth(Double.MAX_VALUE);
         btnCadastrar.getStyleClass().add("btn-entrar");
         VBox.setMargin(btnCadastrar, new Insets(15, 0, 0, 0));
+		
+		// Fazendo o binding bidirecional dos campos com o CadastroController
 
+		nomeBox.textProperty().bindBidirectional(controller.nomeProperty);
+		
         // Adicionando os elementos do formulário no card
         card.getChildren().addAll(
             titleLabel,
