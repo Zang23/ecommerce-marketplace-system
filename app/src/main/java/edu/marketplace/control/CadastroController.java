@@ -1,14 +1,17 @@
 package edu.marketplace.control;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import edu.marketplace.dao.CompradorDAO;
+import edu.marketplace.dao.ConnectionFactory;
+import edu.marketplace.dao.VendedorDAO;
 import edu.marketplace.entity.Comprador;
 
 // Resumo do serviço
 // Itens:
 // Validar campos (ver se o usuário já existe, formato do email, senha válida)
-// Cadastrar clientes  
+// Cadastrar clientes (Tanto comprador como Vendedor)
 
 public class CadastroController {
 
@@ -26,21 +29,35 @@ public class CadastroController {
         return "A senha precisa ter pelo menos 6 caracteres";
     }
 
-    // Função pra ver se já existe algúem com aquele email
-    if (usuarioExiste(comprador.getEmail())) {
-        return "Já existe uma conta com esse email";
-    }
-
-    // Se chegou aqui vai pro DAO.
+    // Com tudo certo aí eu peço pro DAO salvar o cliente no banco, e depois disso solto uma mensagem falando noq deu
     try {
-        // Aqui abre a conexão, ela vai pro DAO, Thiago pelo oq eu pesquisei
-        // vocÊ vai precisar fazer no seu DAO uma função pra inserir o comprador
-        CompradorDAO dao = new CompradorDAO();
+        // Aqui cria a ÙNICA CONEXÃO
+        Connection conexao = ConnectionFactory.getConnection();
+        CompradorDAO compradorDao = new CompradorDAO(conexao);
+        VendedorDAO vendedorDao = new VendedorDAO(conexao);
 
-        // Passando o objeto todo, se precisar mudar só avisar (Boolean pra saber se é vendedor ou não)
-        dao.inserir(comprador, ehVendedor);
+        // Usa a função de verificar email
+        if (compradorDao.existePorEmail(comprador.getEmail())) {
+            conexao.close();
+            return "Já existe uma conta com esse email";
+        }
 
-        return "Cadastrado com sucesso";
+        // Mudei pra ver qual DAO que vai colocar / cadastrar o usuário
+        boolean inseriu;
+        if (ehVendedor == true) {
+            inseriu = vendedorDao.inserir(comprador);
+        } else {
+            inseriu = compradorDao.inserir(comprador);
+        }
+
+        conexao.close();
+
+        // O "inseriu" devolve true se deu tudo certo
+        if (inseriu == true) {
+            return "Cadastrado com sucesso";
+        } else {
+            return "Erro ao cadastrar, tente de novo";
+        }
 
     } catch (SQLException erro) {
         erro.printStackTrace();
@@ -52,11 +69,14 @@ public class CadastroController {
   public boolean usuarioExiste(String email) {
 
     try {
-        CompradorDAO dao = new CompradorDAO();
+        Connection conexao = ConnectionFactory.getConnection();
+        CompradorDAO dao = new CompradorDAO(conexao);
 
         // Ach oque verificar por email é o melhor, ai faz uma função que só
         // confere se tem arroba e ponto ou algo assim simples p testar
+        // Como vendedor HERDA do comprador, só precisa verificar no DAO de comprador mesmo e gg
         boolean jaExiste = dao.existePorEmail(email);
+        conexao.close();
         return jaExiste;
 
     } catch (SQLException erro) {
