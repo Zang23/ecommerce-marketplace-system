@@ -114,7 +114,14 @@ public class CompradorDAO implements CrudDAO<Comprador> {
   public Comprador buscarPorId(Long id){
     return null;
   }
-  
+ 
+
+  public Comprador buscarPorEmailESenha(String email, String senha){
+
+
+    return null;
+
+  }
 
   
 
