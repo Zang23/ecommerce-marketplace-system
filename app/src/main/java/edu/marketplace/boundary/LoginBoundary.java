@@ -10,6 +10,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
+import edu.marketplace.control.LoginController;
 
 public class LoginBoundary extends Application {
 
@@ -25,6 +26,7 @@ public class LoginBoundary extends Application {
         // Container principal (fundo cinza escuro)
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #2b2b2b;");
+		LoginController controller = new LoginController();
 
         // O "Card" escuro do formulário
         VBox loginCard = new VBox(20);
@@ -65,7 +67,28 @@ public class LoginBoundary extends Application {
         Text textoLink = new Text("criar conta");
         textoLink.setFill(Color.web("#4a6fe3"));
         textoLink.getStyleClass().add("link-text");
+		
+		emailField.textProperty().bindBidirectional(controller.emailProperty);
+		senhaField.textProperty().bindBidirectional(controller.senhaProperty);
 
+		// Adicoonando o evento do botão de entrar
+		
+		btnEntrar.setOnMouseClicked(event -> {
+			String retorno = controller.autenticar();
+			
+			btnEntrar.setText(retorno);
+			System.out.println(retorno);
+			if(retorno.equals("Login feito com sucesso")){
+				btnEntrar.setDisable(true);
+				Scene cenaDashboard = DashboardProdutosBoundary.criarCena(stage);
+				
+				stage.setScene(cenaDashboard);
+				stage.setTitle("Dashboard");
+			}else{
+				
+			}
+		});
+		
         // Adicionando o evento de clique no texto azul
         textoLink.setOnMouseClicked(event -> {
             // Pede a tela de cadastro montada

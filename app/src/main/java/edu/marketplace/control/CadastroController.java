@@ -9,8 +9,6 @@ import edu.marketplace.dao.VendedorDAO;
 import edu.marketplace.entity.Comprador;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -20,9 +18,9 @@ import javafx.beans.property.SimpleBooleanProperty;
 // Cadastrar clientes (Tanto comprador como Vendedor)
 
 public class CadastroController {
+	
+	//Declaracao das StringProperty da boundary
 
-  // Resuminho: Primeiro valida os campos, se tiverem certos ele pede pro DAO
-  // salvar o cliente no banco e depois disso solta uma mensagem falando noq deu
 	public final StringProperty nomeProperty = new SimpleStringProperty(this, "nome", "nome");
 	public final StringProperty documentoProperty = new SimpleStringProperty(this, "documento", "000.000.000-00");
 	public final StringProperty emailProperty = new SimpleStringProperty(this, "email", "nome@gmail.com");
@@ -34,6 +32,9 @@ public class CadastroController {
 	public final StringProperty cepProperty = new SimpleStringProperty(this, "telefone" ,"12345678");
 	public final StringProperty cidadeProperty = new SimpleStringProperty(this, "cidade", "Sao Paulo");
 	public final BooleanProperty isVendedorProperty = new SimpleBooleanProperty(false);
+	
+	// Resuminho: Primeiro valida os campos, se tiverem certos ele pede pro DAO
+	// salvar o cliente no banco e depois disso solta uma mensagem falando noq deu
   
   public String cadastrar() {
 

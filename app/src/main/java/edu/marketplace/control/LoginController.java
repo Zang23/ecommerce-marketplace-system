@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import edu.marketplace.dao.CompradorDAO;
 import edu.marketplace.dao.ConnectionFactory;
 import edu.marketplace.entity.Comprador;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 // Resumo do serviço
 // Itens:
@@ -18,10 +20,13 @@ public class LoginController {
   // Aqui eu guardo quem ta logado e se ele é vendedor, ai as outras telas conseguem ver isso depois
   private static Comprador usuarioLogado;
   private static boolean vendedorLogado;
+  
+  	public final StringProperty emailProperty = new SimpleStringProperty(this, "email");
+	public final StringProperty senhaProperty = new SimpleStringProperty(this, "senha");
 
   // Resuminho: confere o email e a senha no banco. Se tiver certo deixa entrar e guarda quem logou,
   // se não der certo solta uma mensagem de erro
-  public String autenticar(String email, String senha) {
+  public String autenticar() {
 
     try {
         // Aqui cria a conexão
@@ -31,10 +36,10 @@ public class LoginController {
 
         // Thiago,aqui vai precisar de uma função no DAO pra achar o comprador pelo email e a senha (vem null se não achar)
         
-        Comprador comprador = dao.buscarPorEmailESenha(email, senha);
+        Comprador comprador = dao.buscarPorEmailESenha(emailProperty.get(), senhaProperty.get());
 
         // Se veio null é porque não tem ninguém com esse email e senha, então ta errado
-        if (comprador == null) {
+        if (comprador == null || comprador.getId() == null) {
             conexao.close();
             return "Email ou senha incorretos";
         }
