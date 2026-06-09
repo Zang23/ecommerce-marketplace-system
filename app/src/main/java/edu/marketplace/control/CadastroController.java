@@ -29,8 +29,8 @@ public class CadastroController {
 	public final StringProperty senhaProperty = new SimpleStringProperty(this, "senha" ,"123");
 	public final StringProperty senha2Property = new SimpleStringProperty(this, "confsenha" , "123");
 	public final StringProperty telefoneProperty = new SimpleStringProperty(this, "telefone", "123456789");
-	public final StringProperty logradouroProperty = new SimpleStringProperty(this, "logradouro", "avenida paulista");
-	public final IntegerProperty logradouroNumeroProperty = new SimpleIntegerProperty(this, "numero", 123);
+	public final StringProperty ruaProperty = new SimpleStringProperty(this, "logradouro", "avenida paulista");
+	public final StringProperty ruaNumeroProperty = new SimpleStringProperty(this, "numero", "123");
 	public final StringProperty cepProperty = new SimpleStringProperty(this, "telefone" ,"12345678");
 	public final StringProperty cidadeProperty = new SimpleStringProperty(this, "cidade", "Sao Paulo");
 	public final BooleanProperty isVendedorProperty = new SimpleBooleanProperty(false);
@@ -105,8 +105,8 @@ public class CadastroController {
 	  c.setEmail(emailProperty.get());
 	  c.setTelefone(telefoneProperty.get());
 	  System.out.println(telefoneProperty.get());
-	  c.setEnderecoLogradouro(logradouroProperty.get());
-	  c.setEnderecoNumero(logradouroNumeroProperty.get());
+	  c.setEnderecoLogradouro(ruaProperty.get());
+	  c.setEnderecoNumero(Integer.parseInt(ruaNumeroProperty.get()));
 	  c.setEnderecoCep(cepProperty.get());
 	  c.setEnderecoCidade(cidadeProperty.get());
 

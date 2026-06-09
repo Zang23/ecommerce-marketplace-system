@@ -135,10 +135,14 @@ public class CadastroBoundary {
 		// Fazendo o binding bidirecional dos campos com o CadastroController
 
 		nomeField.textProperty().bindBidirectional(controller.nomeProperty);
-		documentoField.textProperty().bindBidirectional(controller.documentoProperty);
 		emailField.textProperty().bindBidirectional(controller.emailProperty);
 		senhaField.textProperty().bindBidirectional(controller.senhaProperty);
 		senha2Field.textProperty().bindBidirectional(controller.senha2Property);
+		cepField.textProperty().bindBidirectional(controller.cepProperty);
+		ruaField.textProperty().bindBidirectional(controller.ruaProperty);
+		numField.textProperty().bindBidirectional(controller.ruaNumeroProperty);
+		cepField.textProperty().bindBidirectional(controller.cepProperty);
+		//cidadeField.textProperty().bindBidirectional(controller.ruaNumeroProperty);
 		btnVendedor.selectedProperty().bindBidirectional(controller.isVendedorProperty);
 		
         // Montando o Card
