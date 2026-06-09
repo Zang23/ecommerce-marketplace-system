@@ -33,6 +33,9 @@ public class Produto {
     super();
   }
 
+  public void setCodigo(Long codigo){
+    this.codigo = codigo;
+  }
   public Long getCodigo() {
     return codigo;
   }
