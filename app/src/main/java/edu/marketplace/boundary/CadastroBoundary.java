@@ -5,6 +5,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import edu.marketplace.control.CadastroController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 public class CadastroBoundary {
 
@@ -12,6 +17,7 @@ public class CadastroBoundary {
     public static Scene criarCena(Stage stage) {
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #2b2b2b;");
+		CadastroController controller = new CadastroController();
 
         VBox card = new VBox(15);
         card.getStyleClass().add("login-card");
@@ -121,7 +127,20 @@ public class CadastroBoundary {
         btnCadastrar.setMaxWidth(Double.MAX_VALUE);
         btnCadastrar.getStyleClass().add("btn-entrar");
         VBox.setMargin(btnCadastrar, new Insets(15, 0, 0, 0));
+		
+		btnCadastrar.setOnAction(event -> {
+			System.out.println(controller.cadastrar());
+		});
+		
+		// Fazendo o binding bidirecional dos campos com o CadastroController
 
+		nomeField.textProperty().bindBidirectional(controller.nomeProperty);
+		documentoField.textProperty().bindBidirectional(controller.documentoProperty);
+		emailField.textProperty().bindBidirectional(controller.emailProperty);
+		senhaField.textProperty().bindBidirectional(controller.senhaProperty);
+		senha2Field.textProperty().bindBidirectional(controller.senha2Property);
+		btnVendedor.selectedProperty().bindBidirectional(controller.isVendedorProperty);
+		
         // Montando o Card
         card.getChildren().addAll(
             titleLabel, 

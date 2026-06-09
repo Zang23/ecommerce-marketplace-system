@@ -1,0 +1,104 @@
+/* Estilo do container do formulário */
+.login-card {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0, 0, 10);
+}
+
+/* Estilo do Título principal */
+.title {
+    -fx-text-fill: white;
+    -fx-font-size: 50px;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+    -fx-font-weight: bold;
+}
+
+/* Estilo base dos botões de tipo de conta */
+.meu-toggle-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #333333;
+    -fx-border-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+/* Efeito ao passar o rato (mouse) por cima */
+.meu-toggle-button:hover {
+    -fx-border-color: #555555;
+    -fx-background-color: #222222;
+}
+
+/* Efeito de quando o botão está ATIVO/SELECIONADO */
+.meu-toggle-button:selected {
+    -fx-border-color: #a0104a; /* A tua cor rosa */
+    -fx-background-color: rgba(160, 16, 74, 0.15); /* Um fundo rosa muito subtil */
+    -fx-background-radius: 8;
+}
+
+/* Vamos garantir que o título fica grande e em destaque */
+.title {
+    -fx-text-fill: white;
+    -fx-font-size: 26px; /* Aumenta este valor se quiseres o título ainda maior */
+    -fx-font-weight: bold;
+}
+
+/* Estilo padrão das Labels (E-mail, Senha) */
+.label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Estilo das caixas de texto (Inputs) */
+.text-field, .password-field {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #333333;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #666666;
+    -fx-padding: 12;
+    -fx-font-size: 14px;
+}
+
+/* Efeito quando o usuário clica na caixa de texto */
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #a0104a; /* Borda rosa escura ao focar */
+}
+
+/* Estilo do Botão Entrar */
+.btn-entrar {
+    -fx-background-color: #a0104a; /* Cor rosa/magenta da imagem */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8;
+    -fx-padding: 12;
+    -fx-cursor: hand;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.btn-entrar:hover {
+    -fx-background-color: #c2145b;
+}
+
+/* Efeito ao clicar no botão */
+.btn-entrar:pressed {
+    -fx-background-color: #7a0b38;
+}
+
+/* Estilo do link "criar conta" */
+.link-text {
+    -fx-cursor: hand;
+}
+.link-text:hover {
+    -fx-underline: true;
+}
+
+.seu-container-pai { /* Substitua pelo nome da classe do seu container principal */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+  /* min-height: 100vh; */ /* Opcional, garante que o container tenha a altura total da janela */
+}
