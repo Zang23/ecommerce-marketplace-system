@@ -9,6 +9,8 @@ import edu.marketplace.dao.VendedorDAO;
 import edu.marketplace.entity.Comprador;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -21,12 +23,17 @@ public class CadastroController {
 
   // Resuminho: Primeiro valida os campos, se tiverem certos ele pede pro DAO
   // salvar o cliente no banco e depois disso solta uma mensagem falando noq deu
-  public final StringProperty nomeProperty = new SimpleStringProperty(this, "nome");
-  public final StringProperty documentoProperty = new SimpleStringProperty(this, "000.000.000-00");
-  public final StringProperty emailProperty = new SimpleStringProperty(this, "nome@gmail.com");
-  public final StringProperty senhaProperty = new SimpleStringProperty(this, "123");
-  public final StringProperty senha2Property = new SimpleStringProperty(this, "123");
-  public final BooleanProperty isVendedorProperty = new SimpleBooleanProperty(false);
+	public final StringProperty nomeProperty = new SimpleStringProperty(this, "nome", "nome");
+	public final StringProperty documentoProperty = new SimpleStringProperty(this, "documento", "000.000.000-00");
+	public final StringProperty emailProperty = new SimpleStringProperty(this, "email", "nome@gmail.com");
+	public final StringProperty senhaProperty = new SimpleStringProperty(this, "senha" ,"123");
+	public final StringProperty senha2Property = new SimpleStringProperty(this, "confsenha" , "123");
+	public final StringProperty telefoneProperty = new SimpleStringProperty(this, "telefone", "123456789");
+	public final StringProperty logradouroProperty = new SimpleStringProperty(this, "logradouro", "avenida paulista");
+	public final IntegerProperty logradouroNumeroProperty = new SimpleIntegerProperty(this, "numero", 123);
+	public final StringProperty cepProperty = new SimpleStringProperty(this, "telefone" ,"12345678");
+	public final StringProperty cidadeProperty = new SimpleStringProperty(this, "cidade", "Sao Paulo");
+	public final BooleanProperty isVendedorProperty = new SimpleBooleanProperty(false);
   
   public String cadastrar() {
 
@@ -96,6 +103,12 @@ public class CadastroController {
 	  c.setNome(nomeProperty.get());
 	  c.setSenha(senhaProperty.get());
 	  c.setEmail(emailProperty.get());
+	  c.setTelefone(telefoneProperty.get());
+	  System.out.println(telefoneProperty.get());
+	  c.setEnderecoLogradouro(logradouroProperty.get());
+	  c.setEnderecoNumero(logradouroNumeroProperty.get());
+	  c.setEnderecoCep(cepProperty.get());
+	  c.setEnderecoCidade(cidadeProperty.get());
 
 	return c;
   }
