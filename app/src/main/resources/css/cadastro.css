@@ -95,3 +95,10 @@
 .link-text:hover {
     -fx-underline: true;
 }
+
+.seu-container-pai { /* Substitua pelo nome da classe do seu container principal */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+  /* min-height: 100vh; */ /* Opcional, garante que o container tenha a altura total da janela */
+}

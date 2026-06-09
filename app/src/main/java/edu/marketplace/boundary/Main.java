@@ -14,6 +14,7 @@ public class Main extends Application {
        Scene scene = LoginBoundary.criarCena(stage);    
         //Testando as outras telas:
         //Scene scene = CartaoBoundary.criarCena(stage); 
+        //Scene scene = DashboardProdutosBoundary.criarCena(stage);
         stage.setScene(scene);
         stage.setTitle(getGreeting());
         stage.show();
